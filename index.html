@@ -1,43 +1,270 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giveaway</title>
+    <title>Pokémon GO · 550 Coin Giveaway</title>
     <style>
-        body {
-            background-color: #ffffff;
-            color: #000000;
-            font-family: Arial, sans-serif;
-            height: 100vh;
+        /* minimalistic, clean, centered, white background, black text */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #000000;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .card {
+            max-width: 720px;
+            width: 100%;
+            background: #FFFFFF;
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 12px 30px -8px rgba(0,0,0,0.05);
+            padding: 3rem 2rem;
+            border-radius: 36px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        /* logo area — clean, subtle, just to drop in an image or placeholder */
+        .logo-placeholder {
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 2.2rem;
         }
-        .container {
-            text-align: center;
+
+        .logo-frame {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            max-width: 100%;
+            background: #FFFFFF;
+            border-radius: 32px;
+            padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+            border: 1px dashed #AAAAAA;   /* very light grey – indicates image area, still minimal */
         }
-        img {
-            max-width: 150px;
-            margin-bottom: 20px;
+
+        .logo-placeholder svg {
+            max-width: 240px;
+            height: auto;
+            display: block;
         }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            color: #222;
+            border: 1px dotted #aaa;
+            padding: 0.6rem 1.4rem;
+            border-radius: 60px;
+            background: #fafafa;
+        }
+
+        /* headline */
         h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0.8rem 0 0.5rem 0;
+            line-height: 1.2;
+            color: #000000;
         }
-        p {
-            font-size: 1.2em;
+
+        .subhead {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1.6rem;
+            color: #111;
         }
-        a.button {
+
+        /* reward highlight */
+        .prize-highlight {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: #FFFFFF;
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
+            padding: 0.2rem 1.2rem;
+            border-radius: 60px;
+            border: 2px solid #000000;
+            margin: 1.2rem 0 1rem 0;
+            box-shadow: none;
+            color: #000;
+        }
+
+        /* description */
+        .description {
+            font-size: 1.3rem;
+            font-weight: 350;
+            max-width: 500px;
+            margin: 1.2rem auto 2rem auto;
+            color: #1a1a1a;
+        }
+
+        /* winners */
+        .winners {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin: 1rem 0 1.8rem 0;
+            color: #222;
+            border-bottom: 1px solid #eaeaea;
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        /* button */
+        .giveaway-btn {
+            display: inline-block;
             background-color: #000000;
-            color: #ffffff;
+            color: #FFFFFF;
             text-decoration: none;
-            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1.5rem;
+            padding: 1.1rem 3rem;
+            border-radius: 80px;
+            margin: 1.6rem 0 0.8rem 0;
+            border: 2px solid #000;
+            transition: 0.15s;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 0 #444;   /* subtle nod to minimal depth */
+            cursor: pointer;
+        }
+
+        .giveaway-btn:hover {
+            background-color: #222;
+            border-color: #222;
+            box-shadow: 0 2px 0 #333;
+            transform: translateY(2px);
+        }
+
+        .giveaway-btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        /* fine print / legal (optional) */
+        .fine {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #555;
+            border-top: 1px solid #eee;
+            padding-top: 1.5rem;
+        }
+
+        /* everything centered */
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 1.5rem auto;
+            width: 80px;
+        }
+
+        /* responsive */
+        @media (max-width: 480px) {
+            .card {
+                padding: 2rem 1.2rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .prize-highlight {
+                font-size: 1.8rem;
+            }
+            .giveaway-btn {
+                font-size: 1.3rem;
+                padding: 0.9rem 2rem;
+                width: 100%;
+            }
+            .logo-frame {
+                padding: 0.5rem 0.5rem;
+            }
+        }
+
+        /* make the placeholder really flexible – an SVG that looks like a logo silhouette */
+        .logo-silhouette {
+            fill: none;
+            stroke: #333;
+            stroke-width: 1.2;
         }
     </style>
 </head>
 <body>
+    <div class="card">
+
+        <!-- logo placeholder: clean area to insert Pokémon GO logo or any image -->
+        <div class="logo-placeholder">
+            <div class="logo-frame">
+                <!-- you can replace this entire block with an <img src="pokemon-go-logo.png"> 
+                     or keep as a subtle SVG placeholder -->
+                <svg width="200" height="70" viewBox="0 0 200 70" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+                    <!-- simple outline suggesting a logo area — minimal, but indicates where logo sits -->
+                    <rect x="5" y="8" width="190" height="54" rx="16" fill="white" stroke="#222" stroke-width="1.2" stroke-dasharray="3 3" />
+                    <text x="50" y="43" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#222">POKÉMON GO</text>
+                    <!-- tiny pokeball accent (optional, but keeps theme) -->
+                    <circle cx="148" cy="35" r="12" fill="none" stroke="#222" stroke-width="1.2" />
+                    <circle cx="148" cy="35" r="4" fill="none" stroke="#222" stroke-width="1.2" />
+                    <line x1="136" y1="35" x2="160" y2="35" stroke="#222" stroke-width="1" />
+                </svg>
+                <!-- if you prefer just text: <span class="logo-text">[ YOUR LOGO ]</span> -->
+            </div>
+        </div>
+
+        <!-- main headline -->
+        <h1>550 PokéCoins<br>instant giveaway</h1>
+        <div class="subhead">for three lucky trainers</div>
+
+        <!-- strong reward pill -->
+        <div class="prize-highlight">⚡ 550 COINS ⚡</div>
+
+        <!-- brief engaging description -->
+        <div class="description">
+            Enter for a chance to power up your bag, incubators, or remote passes.
+            Three winners — simple, fast, no strings attached.
+        </div>
+
+        <!-- subtle winner line -->
+        <div class="winners">🍀 winners drawn every week 🍀</div>
+
+        <!-- call to action button – redirects to enter page (example placeholder) -->
+        <a href="#" class="giveaway-btn" onclick="fakeRedirect(); return false;">✨ enter giveaway ✨</a>
+
+        <!-- tiny note that it's a demo concept (you can remove) -->
+        <div class="fine">
+            ⚡ concept page — replace the link with your actual giveaway URL<br>
+            #PokemonGO #Giveaway
+        </div>
+    </div>
+
+    <script>
+        // simple simulation: button redirect (concept only – you would put real URL in href)
+        function fakeRedirect() {
+            // For demonstration we just show an alert – replace with actual redirect.
+            // In real implementation, set href="https://your-giveaway-link.com"
+            alert('[demo] redirect to official giveaway entry page');
+            // (or you could simulate: window.location.href = 'https://your-giveaway.com/enter';
+        }
+    </script>
+
+    <!-- 
+        DESIGN NOTES:
+        - white background, black text, clean layout
+        - prominent logo placeholder (you can swap SVG with <img>)
+        - centered everything 
+        - reward (550 coins) highly visible
+        - button stands out but stays monochrome
+        - no extra colors, minimalistic professional style
+    -->
+</body>
+</html>
