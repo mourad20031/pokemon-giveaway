@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokémon GO · 550 Coin Giveaway</title>
     <style>
-        /* minimalistic, clean, centered, white background, black text */
         * {
             margin: 0;
             padding: 0;
@@ -13,258 +12,339 @@
         }
 
         body {
-            background-color: #FFFFFF;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #FFFFFF;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             color: #000000;
-            line-height: 1.5;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
+            padding: 2rem 1.5rem;
+            line-height: 1.5;
+            font-weight: 400;
         }
 
+        /* main card – purely white, subtle shadow for depth, crisp */
         .card {
-            max-width: 720px;
+            max-width: 800px;
             width: 100%;
             background: #FFFFFF;
-            border: 1px solid rgba(0,0,0,0.08);
-            box-shadow: 0 12px 30px -8px rgba(0,0,0,0.05);
-            padding: 3rem 2rem;
-            border-radius: 36px;
+            border-radius: 48px;
+            padding: 3.5rem 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
             text-align: center;
-            transition: all 0.2s ease;
+            border: 1px solid #F0F0F0;
         }
 
-        /* logo area — clean, subtle, just to drop in an image or placeholder */
-        .logo-placeholder {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 2.2rem;
+        /* --- 16:9 logo area --- */
+        .logo-container {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto 2.8rem auto;
         }
 
         .logo-frame {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: auto;
-            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            width: 100%;
             background: #FFFFFF;
-            border-radius: 32px;
-            padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-            border: 1px dashed #AAAAAA;   /* very light grey – indicates image area, still minimal */
+            border: 1.5px dashed #CCCCCC;   /* very light grey, clean and indicates image area */
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+            transition: border 0.2s ease;
         }
 
-        .logo-placeholder svg {
-            max-width: 240px;
-            height: auto;
+        /* actual logo image placeholder — flexible, modern, crisp */
+        .logo-image {
+            max-width: 85%;
+            max-height: 80%;
+            object-fit: contain;
             display: block;
         }
 
-        .logo-text {
-            font-size: 1.25rem;
-            font-weight: 400;
-            letter-spacing: 0.3px;
-            color: #222;
-            border: 1px dotted #aaa;
-            padding: 0.6rem 1.4rem;
-            border-radius: 60px;
-            background: #fafafa;
+        /* fallback SVG for demo — clean, professional, Pokémon GO inspired */
+        .logo-svg {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* headline */
-        h1 {
-            font-size: 2.6rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin: 0.8rem 0 0.5rem 0;
-            line-height: 1.2;
-            color: #000000;
+        /* short description under logo */
+        .hero-description {
+            font-size: 1.6rem;
+            font-weight: 380;
+            max-width: 580px;
+            margin: 0 auto 2.5rem auto;
+            color: #111111;
+            letter-spacing: -0.01em;
+            line-height: 1.4;
         }
 
-        .subhead {
-            font-size: 1.4rem;
-            font-weight: 400;
-            margin-bottom: 1.6rem;
-            color: #111;
-        }
-
-        /* reward highlight */
-        .prize-highlight {
-            font-size: 2.2rem;
-            font-weight: 700;
+        .hero-description strong {
+            font-weight: 620;
             background: #FFFFFF;
-            display: inline-block;
-            padding: 0.2rem 1.2rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2px;
+        }
+
+        /* email form – minimal, modern, frictionless */
+        .giveaway-form {
+            max-width: 480px;
+            margin: 0 auto 1.2rem auto;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        @media (min-width: 500px) {
+            .form-row {
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 0.8rem;
+            }
+        }
+
+        /* email input – clean, prominent but minimal */
+        .email-input {
+            flex: 1 1 260px;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            font-family: inherit;
+            border: 2px solid #E0E0E0;
             border-radius: 60px;
+            outline: none;
+            background: #FFFFFF;
+            color: #000000;
+            transition: border 0.15s, box-shadow 0.15s;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+
+        .email-input:focus {
+            border-color: #000000;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.04);
+        }
+
+        .email-input::placeholder {
+            color: #AAAAAA;
+            font-weight: 350;
+            font-size: 1.1rem;
+        }
+
+        /* primary button – black, substantial, modern */
+        .enter-btn {
+            background: #000000;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 60px;
+            padding: 1rem 2.2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+            white-space: nowrap;
             border: 2px solid #000000;
-            margin: 1.2rem 0 1rem 0;
+            line-height: 1.2;
+            box-shadow: 0 2px 0 #333;
+        }
+
+        .enter-btn:hover {
+            background: #1A1A1A;
+            border-color: #1A1A1A;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .enter-btn:active {
+            transform: translateY(3px);
             box-shadow: none;
+        }
+
+        /* micro interactions – info line */
+        .fine-print {
+            margin-top: 2.8rem;
+            font-size: 0.95rem;
+            color: #777777;
+            border-top: 1px solid #EEEEEE;
+            padding-top: 2rem;
+        }
+
+        .winners-badge {
+            display: inline-block;
+            margin: 0 0 1.8rem 0;
+            font-size: 1.2rem;
+            background: #FFFFFF;
+            border: 1.5px solid #000;
+            border-radius: 40px;
+            padding: 0.4rem 1.8rem;
+            font-weight: 500;
             color: #000;
         }
 
-        /* description */
-        .description {
-            font-size: 1.3rem;
-            font-weight: 350;
-            max-width: 500px;
-            margin: 1.2rem auto 2rem auto;
-            color: #1a1a1a;
+        /* small spacer */
+        .spacer-8 {
+            height: 0.5rem;
         }
 
-        /* winners */
-        .winners {
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin: 1rem 0 1.8rem 0;
-            color: #222;
-            border-bottom: 1px solid #eaeaea;
-            display: inline-block;
-            padding-bottom: 6px;
-        }
-
-        /* button */
-        .giveaway-btn {
-            display: inline-block;
-            background-color: #000000;
-            color: #FFFFFF;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.5rem;
-            padding: 1.1rem 3rem;
-            border-radius: 80px;
-            margin: 1.6rem 0 0.8rem 0;
-            border: 2px solid #000;
-            transition: 0.15s;
-            letter-spacing: 0.3px;
-            box-shadow: 0 4px 0 #444;   /* subtle nod to minimal depth */
-            cursor: pointer;
-        }
-
-        .giveaway-btn:hover {
-            background-color: #222;
-            border-color: #222;
-            box-shadow: 0 2px 0 #333;
-            transform: translateY(2px);
-        }
-
-        .giveaway-btn:active {
-            transform: translateY(4px);
-            box-shadow: none;
-        }
-
-        /* fine print / legal (optional) */
-        .fine {
-            margin-top: 3rem;
+        /* everything is centered */
+        .note {
+            color: #aaa;
             font-size: 0.9rem;
-            color: #555;
-            border-top: 1px solid #eee;
-            padding-top: 1.5rem;
+            margin-top: 0.8rem;
         }
 
-        /* everything centered */
-        hr {
-            border: none;
-            border-top: 1px solid #ddd;
-            margin: 1.5rem auto;
-            width: 80px;
-        }
-
-        /* responsive */
+        /* responsive adjustments */
         @media (max-width: 480px) {
             .card {
                 padding: 2rem 1.2rem;
+                border-radius: 32px;
             }
-            h1 {
-                font-size: 2rem;
+            .hero-description {
+                font-size: 1.4rem;
             }
-            .prize-highlight {
-                font-size: 1.8rem;
-            }
-            .giveaway-btn {
-                font-size: 1.3rem;
-                padding: 0.9rem 2rem;
+            .enter-btn {
                 width: 100%;
+                text-align: center;
+                padding: 1rem 1.5rem;
+                font-size: 1.2rem;
             }
-            .logo-frame {
-                padding: 0.5rem 0.5rem;
+            .email-input {
+                width: 100%;
+                text-align: center;
+            }
+            .winners-badge {
+                font-size: 1rem;
+                padding: 0.3rem 1.2rem;
             }
         }
 
-        /* make the placeholder really flexible – an SVG that looks like a logo silhouette */
-        .logo-silhouette {
-            fill: none;
-            stroke: #333;
-            stroke-width: 1.2;
+        /* logo placeholder subtle hover (not needed, just for delight) */
+        .logo-frame:hover {
+            border-color: #999;
+        }
+
+        /* form submission demo (prevent actual submit) */
+        .js-message {
+            font-size: 1rem;
+            margin-top: 1rem;
+            color: #2c2c2c;
+            font-weight: 400;
+            min-height: 2rem;
         }
     </style>
+    <!-- include a modern font (Inter) for that professional touch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="card">
-
-        <!-- logo placeholder: clean area to insert Pokémon GO logo or any image -->
-        <div class="logo-placeholder">
+        <!-- 16:9 logo area – large, prominent, balanced -->
+        <div class="logo-container">
             <div class="logo-frame">
-                <!-- you can replace this entire block with an <img src="pokemon-go-logo.png"> 
-                     or keep as a subtle SVG placeholder -->
-                <svg width="200" height="70" viewBox="0 0 200 70" xmlns="http://www.w3.org/2000/svg" style="display: block;">
-                    <!-- simple outline suggesting a logo area — minimal, but indicates where logo sits -->
-                    <rect x="5" y="8" width="190" height="54" rx="16" fill="white" stroke="#222" stroke-width="1.2" stroke-dasharray="3 3" />
-                    <text x="50" y="43" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#222">POKÉMON GO</text>
-                    <!-- tiny pokeball accent (optional, but keeps theme) -->
-                    <circle cx="148" cy="35" r="12" fill="none" stroke="#222" stroke-width="1.2" />
-                    <circle cx="148" cy="35" r="4" fill="none" stroke="#222" stroke-width="1.2" />
-                    <line x1="136" y1="35" x2="160" y2="35" stroke="#222" stroke-width="1" />
-                </svg>
-                <!-- if you prefer just text: <span class="logo-text">[ YOUR LOGO ]</span> -->
+                <!-- 
+                    REPLACE THIS WITH YOUR ACTUAL LOGO (PNG, SVG, ETC.)
+                    Example: <img class="logo-image" src="pokemon-go-logo.png" alt="Pokémon GO">
+                    We provide a clean SVG placeholder that respects 16:9, visually indicates logo space.
+                -->
+                <img class="logo-image" 
+                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23ffffff'/%3E%3Ctext x='18' y='55' font-family='Arial, sans-serif' font-size='28' font-weight='600' fill='%23333'%3EPOKéMON GO%3C/text%3E%3Ccircle cx='122' cy='45' r='16' fill='none' stroke='%23333' stroke-width='2'/%3E%3Ccircle cx='122' cy='45' r='5' fill='none' stroke='%23333' stroke-width='2'/%3E%3Cpath d='M106 45 L118 45 M126 45 L138 45' stroke='%23333' stroke-width='2' /%3E%3C/svg%3E"
+                     alt="Pokémon GO logo placeholder (16:9)" 
+                     style="width: 100%; height: auto; border-radius: 12px;">
             </div>
+            <!-- subtle hint (can be removed) – but keeps minimalism -->
+            <div style="font-size:0.85rem; color:#aaa; margin-top: 6px;">&nbsp;</div>
         </div>
 
-        <!-- main headline -->
-        <h1>550 PokéCoins<br>instant giveaway</h1>
-        <div class="subhead">for three lucky trainers</div>
-
-        <!-- strong reward pill -->
-        <div class="prize-highlight">⚡ 550 COINS ⚡</div>
-
-        <!-- brief engaging description -->
-        <div class="description">
-            Enter for a chance to power up your bag, incubators, or remote passes.
-            Three winners — simple, fast, no strings attached.
+        <!-- short, engaging description -->
+        <div class="hero-description">
+            ⚡ <strong>550 PokéCoins</strong> for three winners.<br>
+            Enter your email for a chance to power up.
         </div>
 
-        <!-- subtle winner line -->
-        <div class="winners">🍀 winners drawn every week 🍀</div>
+        <!-- winner stat – clean badge -->
+        <div class="winners-badge">🎁 3 winners · drawn weekly</div>
 
-        <!-- call to action button – redirects to enter page (example placeholder) -->
-        <a href="#" class="giveaway-btn" onclick="fakeRedirect(); return false;">✨ enter giveaway ✨</a>
+        <!-- EMAIL FORM (modern, minimal, centered) -->
+        <div class="giveaway-form">
+            <!-- onsubmit intercept for demo – action would point to server -->
+            <form id="giveawayForm" onsubmit="handleSubmit(event);">
+                <div class="form-row">
+                    <input type="email" 
+                           class="email-input" 
+                           id="email" 
+                           name="email" 
+                           placeholder="trainer@example.com"
+                           required
+                           pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                           title="Enter a valid email address">
+                    <button type="submit" class="enter-btn">Enter Giveaway</button>
+                </div>
+                <!-- tiny inline message (demo only) shows after submit -->
+                <div id="formFeedback" class="js-message"></div>
+            </form>
+        </div>
 
-        <!-- tiny note that it's a demo concept (you can remove) -->
-        <div class="fine">
-            ⚡ concept page — replace the link with your actual giveaway URL<br>
-            #PokemonGO #Giveaway
+        <!-- additional info: minimal, aligns with professional clean style -->
+        <div class="fine-print">
+            <span>✔ no spam · one entry per email · ends 04/30</span><br>
+            <span style="opacity:0.5;">© Pokémon GO giveaway concept</span>
         </div>
     </div>
 
     <script>
-        // simple simulation: button redirect (concept only – you would put real URL in href)
-        function fakeRedirect() {
-            // For demonstration we just show an alert – replace with actual redirect.
-            // In real implementation, set href="https://your-giveaway-link.com"
-            alert('[demo] redirect to official giveaway entry page');
-            // (or you could simulate: window.location.href = 'https://your-giveaway.com/enter';
+        // demo form handler – professional, non-intrusive, simulate entry.
+        // Replace with actual form action.
+        function handleSubmit(event) {
+            event.preventDefault();   // stop page reload for demo
+
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value.trim();
+            const feedback = document.getElementById('formFeedback');
+
+            if (!email) {
+                feedback.style.color = "#b33";
+                feedback.innerText = "⨯ please enter your email address.";
+                return;
+            }
+
+            // simple email pattern (already validated by 'pattern', but double-check)
+            const validPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!validPattern.test(email)) {
+                feedback.style.color = "#b33";
+                feedback.innerText = "⨯ that email doesn’t look quite right.";
+                return;
+            }
+
+            // success message — in real case, redirect or POST to server
+            feedback.style.color = "#2b7a2b";
+            feedback.innerText = "✓ you're in! (demo – actual entry would be recorded)";
+
+            // optionally clear after 3 seconds (just for UX)
+            setTimeout(() => {
+                feedback.innerText = "";
+            }, 4000);
+
+            // you can replace the line above with actual redirection or AJAX
+            // Example: window.location.href = "https://your-giveaway.com/thankyou";
+            // For demo we keep it light.
         }
     </script>
-
-    <!-- 
-        DESIGN NOTES:
-        - white background, black text, clean layout
-        - prominent logo placeholder (you can swap SVG with <img>)
-        - centered everything 
-        - reward (550 coins) highly visible
-        - button stands out but stays monochrome
-        - no extra colors, minimalistic professional style
+    <!-- design notes:
+         - white background, black/dark text
+         - 16:9 logo area (prominent but balanced)
+         - short description + email field + big black CTA
+         - clean, centered, modern, professional
     -->
 </body>
 </html>
